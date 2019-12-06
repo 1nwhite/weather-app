@@ -1,0 +1,23 @@
+.weather-forecast
+    &-days
+        display: flex
+        margin-top: 1rem
+        justify-content: center
+        background-color: #fff
+        border-radius: 12px
+        &-block
+            padding: 2rem 0
+            position: relative
+            width: 100%
+            &:not(:last-child)
+                &::after
+                    content: ''
+                    display: block
+                    position: absolute
+                    right: 0
+                    bottom: 0
+                    top: 0
+                    margin: auto
+                    width: 1px
+                    height: 80%
+                    background-color: #e9e9e9

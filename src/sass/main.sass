@@ -5,3 +5,57 @@
 
 li
     list-style: none
+
+body
+    font-family: 'Roboto', sans-serif
+    padding: 0
+    margin: 0
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    text-align: center
+    background: #ededed
+    color: #191919
+button, input
+    outline: none
+h1,h2,h3,h4,h5,h6, p
+    padding: 0
+    margin: 0
+.container
+    width: 90%
+    margin: 0 auto
+.text-right
+    text-align: right
+.error
+    border: 1px solid red !important
+
+.morning
+    background-color: #5bcef5
+.daytime
+    background-color: #0e2b47
+.evening
+    background-color: #424242
+
+.weather
+    height: 100vh
+    &-wrapper
+        width: 80%
+        display: flex
+        justify-content: space-evenly
+        margin: auto
+
+//import weather-header
+@import "weather-header"
+
+//import weather-current
+@import "weather-current"
+
+//import weather-forecast-time
+@import "weather-forecast-time"
+
+//import weather-forecast-days
+@import "weather-forecast-days"
+
+//slider-style
+@import "slider"

@@ -1,0 +1,48 @@
+#days
+    position: relative
+#time
+    position: relative
+
+.slider
+    position: relative
+    width: 600px
+    margin: auto
+    overflow: hidden
+
+.slide
+    min-width: 200px
+
+.slides
+    margin: auto
+    display: flex
+    transition: all ease .5s
+
+.slider-btn
+    position: absolute
+    top: 50%
+    width: 30px
+    height: 30px
+    transform: translateY(-50%)
+    cursor: pointer
+    border: none
+    background: none
+    outline: none
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        border-bottom: 2px solid grey
+        border-left: 2px solid grey
+        width: 18px
+        height: 18px
+        top: 50%
+
+.slider-btn__next
+    right: 0%
+    &::before
+        transform: translate(-20%, -50%) rotate(225deg)
+
+.slider-btn__prev
+    left: 0%
+    &::before
+        transform: translate(20%, -50%) rotate(45deg)

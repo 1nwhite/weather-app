@@ -2,17 +2,18 @@
 
 import '../sass/main.sass';
 import { get } from './helpers';
+import { fetchForecastForCity, fetchCurrentWeatherForCity, fetchForecastWithLocation, fetchCurrentWeatherWithLocation } from './api';
+import CurrentWeather from './components/weather-current-render';
+import { getLocation } from './utils/location';
+import { checkHours } from './utils/utility';
 
-import weather from './components/weather';
 
-const app = get("#app");
+getLocation((lat, lon) => {
+    fetchCurrentWeatherWithLocation(lat, lon)
+        .then(weather => {
+            console.log(weather);
+            const currentWeather = new CurrentWeather();
+            currentWeather.render(weather);
+        })
+});
 
-const renderApp = (appContainer) => {
-    appContainer.innerHTML = (`
-        <div class="container">
-            ${weather}
-        </div>
-    `);
-};
-
-renderApp(app);
