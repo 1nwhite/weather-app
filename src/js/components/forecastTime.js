@@ -16,13 +16,13 @@ export default class ForecastTime {
             const { hours } = getSunTime(forecastDate);
 
             elem.innerHTML = (`
-                <h5 class="weather-forecast-block__time">${checkHours(hours)}:00</h5>
-                <h5 class="weather-forecast-block__temp">
+                <h5 class="weather-forecast-time-items__hours">${checkHours(hours)}:00</h5>
+                <h5 class="weather-forecast-time-items__temp">
                     ${forecastImg(weatherData.icon)} 
                     ${Math.round(main.temp - 273)} &deg;C
                 </h5>
-                <h5 class="weather-forecast-block__wind">${wind.speed} m/s,</h5>
-                <h5 class="weather-forecast-block__pressure">${main.pressure}</h5>
+                <h5 class="weather-forecast-time-items__wind">${wind.speed} m/s,</h5>
+                <h5 class="weather-forecast-time-items__pressure">${main.pressure}</h5>
             `)
         })
 

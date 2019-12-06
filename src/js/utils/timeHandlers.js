@@ -24,3 +24,20 @@ export const getDayWeek = unixDay => {
     }
 
 }
+
+
+const parseDt = str => str.split(' ')[0];
+
+const getCurrentStrDate = date => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getUTCFullYear();
+    return `${year}-${month}-${day < 10 ? `0${day}` : day}`;
+};
+
+export const filterDays = (arr) => {
+    const date = new Date();
+    return arr.filter(elem => getCurrentStrDate(date) !== parseDt(elem.dt_txt));
+}
+
+export const getDateFromDt = dtText => parseDt(dtText).split('-').reverse()[0];
