@@ -23,9 +23,9 @@ export default class ForecastDays {
             elem.innerHTML = (`
             <div class="weather-forecast-days-item-header">
 
-                <h3 class="weather-forecast-days-item-header__day">${day}</h3>
-                <h3 class="weather-forecast-days-item-header__date">${date}</h3>
-                <h3 class="weather-forecast-days-item-header__month">${month}</h3>
+                <h5 class="weather-forecast-days-item-header__day">${day}</h5>
+                <h5 class="weather-forecast-days-item-header__date">${date}</h5>
+                <h5 class="weather-forecast-days-item-header__month">${month}</h5>
 
             </div>
 

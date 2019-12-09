@@ -1,0 +1,91 @@
+//media-style
+@media screen and (max-width:480px)
+    html
+        font-size: 14px
+    .weather
+        height: 100%
+        padding: 2rem 0
+        &-wrapper
+            display: block
+        &-header
+            margin-top: 0
+            margin-bottom: 3rem
+            &__title
+                font-size: 2rem
+            &-search
+                display: flex
+                overflow: hidden
+                &__inp
+                    width: 80%
+                    border-top-right-radius: 0
+                    border-bottom-right-radius: 0
+                    padding-left: 2rem
+                &__btn
+                    display: block
+                    width: 20%
+                    border-top-right-radius: 15px
+                    border-bottom-right-radius: 15px
+                &__icon
+                    right: 20px
+                    left: auto
+                    fill: #fff !important
+        &-current
+            max-width: 100%
+            margin-bottom: 3rem
+            &__temp
+                margin-top: 4.5rem
+        &-forecast
+            &-time, &-days
+                &-item
+                    &:not(:last-child)::after
+                        display: none
+                    h5
+                        font-size: 1.5rem
+                    &__temp
+                        img
+                            width: 6rem
+                    &-body
+                        img
+                            width: 6rem
+    .slide
+        min-width: 100%
+        min-height: 300px
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        justify-content: space-evenly
+        align-items: center
+    .slider
+        &-btn
+            display: block
+
+@media (min-width:481px)  and (max-width:768px)
+    .weather
+        height: 100%
+        &-header
+            &__title
+                font-size: 2rem
+            &-search
+                display: flex
+                overflow: hidden
+                justify-content: center
+                &__inp
+                    width: 50%
+                    border-top-right-radius: 0
+                    border-bottom-right-radius: 0
+                    padding-left: 2rem
+                &__btn
+                    display: block
+                    width: 10%
+                    border-top-right-radius: 15px
+                    border-bottom-right-radius: 15px
+                &__btn-icon
+                    display: block
+                    // right: 20px
+                    // left: auto
+                    fill: #fff !important
+                &__icon
+                    display: none
+@media (min-width:320px)  and (max-width:400px)
+    .weather-header__title
+        font-size: 1.8rem

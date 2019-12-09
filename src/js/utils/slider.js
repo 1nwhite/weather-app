@@ -12,6 +12,9 @@ export const slider = (wrapper) => {
     const wrapperWidth = slidesWrapper.clientWidth;
     const slidesCount = slides.length;
     let slidesInWrapper = 3;
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        slidesInWrapper = 1;
+    }
     const slideWidth = wrapperWidth / slidesInWrapper;
 
 
