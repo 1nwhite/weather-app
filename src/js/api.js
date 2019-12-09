@@ -7,7 +7,7 @@ const fetchForecastForCity = (cityName) => {
 };
 
 const fetchCurrentWeatherForCity = (cityName) => {
-    const url = `${BASE_URL}/weahter?q=${cityName}&appid=${APP_ID}`;
+    const url = `${BASE_URL}/weather?q=${cityName}&appid=${APP_ID}`;
     return fetch(url)
         .then(res => res.json());
 };
