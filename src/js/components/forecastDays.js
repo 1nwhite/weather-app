@@ -11,12 +11,13 @@ export default class ForecastDays {
     render(weather) {
         const weatherArray = sortWeatherByDay(Object.entries(weather));
 
-
         this.items.forEach((elem, i) => {
 
             const [, weatherByDay] = weatherArray[i];
             const [morning, , , daytime, , evening] = weatherByDay;
             const { date, day, month } = getDayWeek(morning.dt);
+
+            const morningTemperatureToshow = morning ? Math.round(morning.main.temp - 273) : 'N/A';
             const dayTimeTemperatureToshow = daytime ? Math.round(daytime.main.temp - 273) : 'N/A';
             const eveningTemperatureToShow = evening ? Math.round(evening.main.temp - 273) : 'N/A';
 
@@ -32,9 +33,11 @@ export default class ForecastDays {
             <div class="weather-forecast-days-item-body">
                 ${forecastImg(daytime.weather[0]['icon'])}
                 <p class='weather-forecast-days-item-body__desc'>${daytime.weather[0]['description']}</p>
-                <span class='weather-forecast-days-item-body__temp weather-forecast-days-item-body__temp_morning'>${Math.round(morning.main.temp - 273)} &deg;C</span>
+                <div class='weather-forecast-days-item-body-temp'>
+                <span class='weather-forecast-days-item-body__temp weather-forecast-days-item-body__temp_morning'>${morningTemperatureToshow} &deg;C</span>
                 <span class='weather-forecast-days-item-body__temp weather-forecast-days-item-body__temp_daytime'>${dayTimeTemperatureToshow} &deg;C</span>
                 <span class='weather-forecast-days-item-body__temp weather-forecast-days-item-body__temp_evening'>${eveningTemperatureToShow} &deg;C</span>
+                </div>
             </div>
             `);
         })

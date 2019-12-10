@@ -15,6 +15,7 @@
             &-search
                 display: flex
                 overflow: hidden
+                justify-content: center
                 &__inp
                     width: 80%
                     border-top-right-radius: 0
@@ -22,13 +23,19 @@
                     padding-left: 2rem
                 &__btn
                     display: block
-                    width: 20%
+                    position: relative
+                    width: 60px
                     border-top-right-radius: 15px
                     border-bottom-right-radius: 15px
+                    &-icon
+                        position: absolute
+                        top: 50%
+                        right: 50%
+                        transform: translate(50%, -50%)
+                        display: block
+                        fill: #fff !important
                 &__icon
-                    right: 20px
-                    left: auto
-                    fill: #fff !important
+                    display: none
         &-current
             max-width: 100%
             margin-bottom: 3rem
@@ -59,10 +66,15 @@
         &-btn
             display: block
 
-@media (min-width:481px)  and (max-width:768px)
+@media (min-width:481px)  and (max-width:1024px)
     .weather
         height: 100%
+        padding: 3rem 0
+        &-wrapper
+            width: 100%
+            justify-content: space-around
         &-header
+            margin-top: 0
             &__title
                 font-size: 2rem
             &-search
@@ -70,22 +82,79 @@
                 overflow: hidden
                 justify-content: center
                 &__inp
-                    width: 50%
+                    width: 350px
                     border-top-right-radius: 0
                     border-bottom-right-radius: 0
                     padding-left: 2rem
                 &__btn
                     display: block
-                    width: 10%
+                    position: relative
+                    width: 70px
                     border-top-right-radius: 15px
                     border-bottom-right-radius: 15px
-                &__btn-icon
-                    display: block
-                    // right: 20px
-                    // left: auto
-                    fill: #fff !important
+                    &-icon
+                        position: absolute
+                        top: 50%
+                        right: 50%
+                        transform: translate(50%, -50%)
+                        display: block
+                        fill: #fff !important
                 &__icon
                     display: none
+        &-forecast
+            &-time, &-days
+                &-item
+                    &:not(:last-child)::after
+                        display: none
+                    &-body
+                        &-temp
+                            display: flex
+                            flex-wrap: wrap
+                            justify-content: center
+                            align-content: space-between
+                            height: 50px
+
+    .slide
+        min-width: 150px
+        min-height: 300px
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        justify-content: space-evenly
+        align-items: center
+    .slider
+        width: 300px
+        &-btn
+            display: block
+
+@media (min-width:1025px)  and (max-width:1440px)
+    .weather
+        &-wrapper
+            width: 100%
+    .slide
+        min-width: 200px
+        min-height: 300px
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        justify-content: space-evenly
+        align-items: center
+    .slider
+        width: 600px
+        &-btn
+            display: block
+
 @media (min-width:320px)  and (max-width:400px)
     .weather-header__title
         font-size: 1.8rem
+@media (min-width:900px)  and (max-width:1024px)
+    .slider-btn__prev
+        left: -12%
+    .slider-btn__next
+        right: -12%
+
+@media (min-width:481px)  and (max-width:1440px)
+    .weather-current
+        max-width: 350px
+        background-size: 145%
+        justify-content: space-around

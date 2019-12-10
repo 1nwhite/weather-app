@@ -12,10 +12,14 @@ export const slider = (wrapper) => {
     const wrapperWidth = slidesWrapper.clientWidth;
     const slidesCount = slides.length;
     let slidesInWrapper = 3;
-    if (window.matchMedia('(max-width: 768px)').matches) {
+    if (window.matchMedia('(max-width: 767px)').matches) {
         slidesInWrapper = 1;
+    } else if (window.matchMedia('(max-width: 1024px)').matches) {
+        slidesInWrapper = 2;
     }
     const slideWidth = wrapperWidth / slidesInWrapper;
+    console.log(slideWidth);
+
 
 
     const transformElem = (elem, move = 0) => elem.style.transform = `translateX(${move}px)`;
