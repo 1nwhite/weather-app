@@ -18,9 +18,6 @@ export const slider = (wrapper) => {
         slidesInWrapper = 2;
     }
     const slideWidth = wrapperWidth / slidesInWrapper;
-    console.log(slideWidth);
-
-
 
     const transformElem = (elem, move = 0) => elem.style.transform = `translateX(${move}px)`;
     transformElem(slidesWrapper);

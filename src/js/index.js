@@ -10,53 +10,51 @@ import { getLocation } from './utils/location';
 import { futureDaysMap } from './utils/daysMap';
 import { getCity } from './utils/getCity';
 import { slider } from './utils/slider';
+import { errorApi } from './utils/error';
 
 const searchBtn = get('.weather-header-search__btn');
 const currentWeather = new CurrentWeather();
 const forecastTime = new ForecastTime();
 const forecastDays = new ForecastDays();
 
-getLocation((lat, lon) => {
-    fetchCurrentWeatherWithLocation(lat, lon)
-        .then(data => {
-            currentWeather.render(data);
-            return data;
-        })
-        .catch(err => console.error(err));
-});
 
 getLocation((lat, lon) => {
-    fetchForecastWithLocation(lat, lon)
-        .then(({ list }) => {
-            const filteredList = futureDaysMap(list);
-            forecastTime.render(list);
+    Promise.all([
+        fetchCurrentWeatherWithLocation(lat, lon),
+        fetchForecastWithLocation(lat, lon),
+        get('.preloader').style.display = 'flex'
+    ])
+        .then(([weatherMap, weatherListMap]) => {
+            const filteredList = futureDaysMap(weatherListMap.list)
+
+            currentWeather.render(weatherMap);
+            forecastTime.render(weatherListMap.list);
             forecastDays.render(filteredList);
-
-            return list;
+            get('.preloader').style.display = 'none';
         })
-        .catch(err => console.error(err));
-});
+        .catch(err => errorApi())
+
+})
 
 
 searchBtn.addEventListener('click', function () {
-
     const cityName = getCity();
-    fetchCurrentWeatherForCity(cityName)
-        .then(data => {
-            currentWeather.render(data);
-            return data;
-        })
-        .catch(err => console.error(err));
+    Promise.all([
+        fetchCurrentWeatherForCity(cityName),
+        fetchForecastForCity(cityName),
+        get('.preloader').style.display = 'flex'
+    ])
+        .then(([weatherMap, weatherListMap]) => {
+            const filteredList = futureDaysMap(weatherListMap.list)
 
-    fetchForecastForCity(cityName)
-        .then(({ list }) => {
-            const filteredList = futureDaysMap(list);
-            forecastTime.render(list);
+            currentWeather.render(weatherMap);
+            forecastTime.render(weatherListMap.list);
             forecastDays.render(filteredList);
-
-            return list;
+            get('.preloader').style.display = 'none';
         })
-        .catch(err => console.error(err));
+        .catch(err => errorApi())
+
+
 });
 
 document.addEventListener('keyup', function (e) {
@@ -65,22 +63,23 @@ document.addEventListener('keyup', function (e) {
         return false;
     }
     const cityName = getCity();
-    fetchCurrentWeatherForCity(cityName)
-        .then(data => {
-            currentWeather.render(data);
-            return data;
-        })
-        .catch(err => console.error(err));
+    Promise.all([
+        fetchCurrentWeatherForCity(cityName),
+        fetchForecastForCity(cityName),
+        get('.preloader').style.display = 'flex'
+    ])
+        .then(([weatherMap, weatherListMap]) => {
 
-    fetchForecastForCity(cityName)
-        .then(({ list }) => {
-            const filteredList = futureDaysMap(list);
-            forecastTime.render(list);
+            const filteredList = futureDaysMap(weatherListMap.list)
+
+            currentWeather.render(weatherMap);
+            forecastTime.render(weatherListMap.list);
             forecastDays.render(filteredList);
-
-            return list;
+            get('.preloader').style.display = 'none';
         })
-        .catch(err => console.error(err));
+        .catch(err => errorApi())
+
+
 });
 
 slider('#days');
