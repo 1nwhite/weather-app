@@ -10,19 +10,25 @@ import { getLocation } from './utils/location';
 import { futureDaysMap } from './utils/daysMap';
 import { getCity } from './utils/getCity';
 import { slider } from './utils/slider';
-import { errorApi } from './utils/error';
+import { errorApi, weatherBody, errorContainer } from './utils/error';
 
 const searchBtn = get('.weather-header-search__btn');
+const weatherWrapper = get('.weather-wrapper');
+export const preloader = get('.preloader');
+
 const currentWeather = new CurrentWeather();
 const forecastTime = new ForecastTime();
 const forecastDays = new ForecastDays();
 
 
 getLocation((lat, lon) => {
+    preloader.classList.remove('hidden');
+    weatherWrapper.classList.remove('hidden');
+    weatherBody.contains(errorContainer) ? weatherBody.removeChild(errorContainer) : false;
+
     Promise.all([
         fetchCurrentWeatherWithLocation(lat, lon),
         fetchForecastWithLocation(lat, lon),
-        get('.preloader').style.display = 'flex'
     ])
         .then(([weatherMap, weatherListMap]) => {
             const filteredList = futureDaysMap(weatherListMap.list)
@@ -30,19 +36,22 @@ getLocation((lat, lon) => {
             currentWeather.render(weatherMap);
             forecastTime.render(weatherListMap.list);
             forecastDays.render(filteredList);
-            get('.preloader').style.display = 'none';
+
+            preloader.classList.add('hidden');
         })
         .catch(err => errorApi())
-
 })
 
 
 searchBtn.addEventListener('click', function () {
     const cityName = getCity();
+    preloader.classList.remove('hidden');
+    weatherWrapper.classList.remove('hidden');
+    weatherBody.contains(errorContainer) ? weatherBody.removeChild(errorContainer) : false;
+
     Promise.all([
         fetchCurrentWeatherForCity(cityName),
         fetchForecastForCity(cityName),
-        get('.preloader').style.display = 'flex'
     ])
         .then(([weatherMap, weatherListMap]) => {
             const filteredList = futureDaysMap(weatherListMap.list)
@@ -50,11 +59,11 @@ searchBtn.addEventListener('click', function () {
             currentWeather.render(weatherMap);
             forecastTime.render(weatherListMap.list);
             forecastDays.render(filteredList);
-            get('.preloader').style.display = 'none';
+
+
+            preloader.classList.add('hidden');
         })
         .catch(err => errorApi())
-
-
 });
 
 document.addEventListener('keyup', function (e) {
@@ -63,10 +72,14 @@ document.addEventListener('keyup', function (e) {
         return false;
     }
     const cityName = getCity();
+    preloader.classList.remove('hidden');
+    weatherWrapper.classList.remove('hidden');
+    weatherBody.contains(errorContainer) ? weatherBody.removeChild(errorContainer) : false;
+
     Promise.all([
         fetchCurrentWeatherForCity(cityName),
         fetchForecastForCity(cityName),
-        get('.preloader').style.display = 'flex'
+
     ])
         .then(([weatherMap, weatherListMap]) => {
 
@@ -75,11 +88,10 @@ document.addEventListener('keyup', function (e) {
             currentWeather.render(weatherMap);
             forecastTime.render(weatherListMap.list);
             forecastDays.render(filteredList);
-            get('.preloader').style.display = 'none';
+
+            preloader.classList.add('hidden');
         })
         .catch(err => errorApi())
-
-
 });
 
 slider('#days');

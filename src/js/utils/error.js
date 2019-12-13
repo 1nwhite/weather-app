@@ -1,11 +1,12 @@
 import { get } from '../helpers';
+import { preloader } from '../index';
+export const weatherBody = get('.weather-body');
+export const errorContainer = document.createElement('div');
 
 export const errorApi = () => {
-    const weatherBody = get('.weather-body')
-    get('.weather-wrapper').style.display = 'none';
-    const errorContainer = document.createElement('div');
+    get('.weather-wrapper').classList.add('hidden');
     errorContainer.className = 'error-container';
     errorContainer.innerHTML = `<h3>Not found</h3>`;
-    weatherBody.contains(get('.error-container')) ? true : weatherBody.appendChild(errorContainer);
-    get('.preloader').style.display = 'none';
+    weatherBody.contains(errorContainer) ? true : weatherBody.appendChild(errorContainer);
+    preloader.classList.add('hidden');
 }
