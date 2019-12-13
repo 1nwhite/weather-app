@@ -17,10 +17,10 @@ export default class ForecastTime {
 
             elem.innerHTML = (`
                 <h5 class="weather-forecast-time-item__hours">${checkHours(hours)}:00</h5>
-                <h5 class="weather-forecast-time-item__temp">
+                <h4 class="weather-forecast-time-item__temp">
                     ${forecastImg(weatherData.icon)} 
                     ${Math.round(main.temp - 273)} &deg;C
-                </h5>
+                </h4>
                 <h5 class="weather-forecast-time-item__wind">${wind.speed} m/s,</h5>
                 <h5 class="weather-forecast-time-item__pressure">${main.pressure}</h5>
             `)

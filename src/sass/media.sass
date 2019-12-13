@@ -4,7 +4,7 @@
         font-size: 14px
     .weather
         height: 100%
-        padding: 2rem 0
+        padding: 3rem 0
         &-wrapper
             display: block
         &-header
@@ -37,7 +37,8 @@
                 &__icon
                     display: none
         &-current
-            max-width: 100%
+            padding: 2rem 1rem
+            min-width: 100%
             margin-bottom: 3rem
             &__temp
                 margin-top: 4.5rem
@@ -47,8 +48,9 @@
                     &:not(:last-child)::after
                         display: none
                     h5
-                        font-size: 1.5rem
-                    &__temp
+                        font-size: 1.1rem
+                    h4
+                        font-size: 1.6rem
                         img
                             width: 6rem
                     &-body
@@ -56,7 +58,7 @@
                             width: 6rem
     .slide
         min-width: 100%
-        min-height: 300px
+        min-height: 330px
         display: flex
         flex-direction: column
         flex-wrap: wrap
@@ -104,8 +106,9 @@
         &-forecast
             &-time, &-days
                 &-item
+                    padding: 2rem 0
                     &:not(:last-child)::after
-                        display: none
+                        // display: none
                     &-body
                         &-temp
                             display: flex
@@ -116,11 +119,11 @@
 
     .slide
         min-width: 150px
-        min-height: 300px
+        min-height: 280px
         display: flex
         flex-direction: column
         flex-wrap: wrap
-        justify-content: space-evenly
+        justify-content: space-between
         align-items: center
     .slider
         width: 300px
@@ -133,7 +136,7 @@
             width: 100%
     .slide
         min-width: 200px
-        min-height: 300px
+        min-height: 250px
         display: flex
         flex-direction: column
         flex-wrap: wrap
@@ -147,11 +150,17 @@
 @media (min-width:320px)  and (max-width:400px)
     .weather-header__title
         font-size: 1.8rem
-@media (min-width:900px)  and (max-width:1024px)
+
+@media (min-width:769px)  and (max-width:1024px)
     .slider-btn__prev
-        left: -12%
+        left: -10%
     .slider-btn__next
-        right: -12%
+        right: -10%
+@media (min-width:1025px)  and (max-width:1440px)
+    .slider-btn__prev
+        left: -6%
+    .slider-btn__next
+        right: -6%
 
 @media (min-width:481px)  and (max-width:1440px)
     .weather-current
