@@ -31,8 +31,8 @@ export default class ForecastDays {
             </div>
 
             <div class="weather-forecast-days-item-body">
-                ${forecastImg(daytime.weather[0]['icon'])}
-                <p class='weather-forecast-days-item-body__desc'>${daytime.weather[0]['description']}</p>
+                ${forecastImg(morning.weather[0]['icon'])}
+                <p class='weather-forecast-days-item-body__desc'>${morning.weather[0]['description']}</p>
                 <div class='weather-forecast-days-item-body-temp'>
                 <span class='weather-forecast-days-item-body__temp weather-forecast-days-item-body__temp_morning'>${morningTemperatureToshow} &deg;C</span>
                 <span class='weather-forecast-days-item-body__temp weather-forecast-days-item-body__temp_daytime'>${dayTimeTemperatureToshow} &deg;C</span>
